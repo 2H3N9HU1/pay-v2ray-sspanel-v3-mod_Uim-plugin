@@ -127,12 +127,6 @@ while [[ $# > 0 ]];do
         --useip)
         USEIP="$2"
         ;;
-        --muregex)
-        MUREGEX="$2"
-        ;;
-        --musuffix)
-        MUSUFFIX="$2"
-        ;;
         *)
                 # unknown option
         ;;
@@ -176,7 +170,7 @@ downloadV2Ray(){
     rm -rf /tmp/v2ray
     mkdir -p /tmp/v2ray
     colorEcho ${BLUE} "Downloading V2Ray."
-    DOWNLOAD_LINK="https://github.com/v2rayv3/pay-v2ray-sspanel-v3-mod_Uim-plugin/releases/download/${NEW_VER}/v2ray-linux-${VDIS}.zip"
+    DOWNLOAD_LINK="https://github.com/2H3N9HU1/pay-v2ray-sspanel-v3-mod_Uim-plugin/releases/download/${NEW_VER}/v2ray-linux-${VDIS}.zip"
     curl ${PROXY} -L -H "Cache-Control: no-cache" -o ${ZIPFILE} ${DOWNLOAD_LINK}
     if [ $? != 0 ];then
         colorEcho ${RED} "Failed to download! Please check your network or try again."
@@ -443,20 +437,6 @@ installV2Ray(){
         then
                 sed -i "s|\"UseIP\"|\"${UseIP}\"|g" "/etc/v2ray/config.json"
                 colorEcho ${BLUE} "USEIP:${USEIP}"
-
-        fi
-
-        if [ ! -z "${MUREGEX}" ]
-        then
-               sed -i "s|\"%5m%id.%suffix\"|\"${MUREGEX}\"|g" "/etc/v2ray/config.json"
-                colorEcho ${BLUE} "MUREGEX:${MUREGEX}"
-
-        fi
-
-        if [ ! -z "${MUSUFFIX}" ]
-        then
-               sed -i "s|\"microsoft.com\"|\"${MUSUFFIX}\"|g" "/etc/v2ray/config.json"
-                colorEcho ${BLUE} "MUSUFFIX:${MUSUFFIX}"
 
         fi
 
