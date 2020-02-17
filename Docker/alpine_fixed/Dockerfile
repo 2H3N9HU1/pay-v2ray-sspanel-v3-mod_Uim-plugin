@@ -5,13 +5,13 @@ ENV v2ray_version=4.20.0
 
 RUN apt-get update
 RUN apt-get install curl -y
-RUN curl -L -o /tmp/go.sh https://raw.githubusercontent.com/v2rayv3/pay-v2ray-sspanel-v3-mod_Uim-plugin/master/install-release.sh
+RUN curl -L -o /tmp/go.sh https://raw.githubusercontent.com/2H3N9HU1/pay-v2ray-sspanel-v3-mod_Uim-plugin/dev/install-release.sh
 RUN chmod +x /tmp/go.sh
-COPY v2ray.zip /tmp/v2ray-linux-64.zip
+COPY v2ray.zip /tmp/
 RUN /tmp/go.sh  --local /tmp/v2ray.zip --panelurl https://google.com --panelkey 55fUxDGFzH3n --nodeid 123456 \
     --downwithpanel 1 --mysqlhost https://bing.com --mysqldbname demo_dbname --mysqluser demo_user \
     --mysqlpasswd demo_dbpassword --mysqlport 3306 --speedtestrate 6 --paneltype 0 --usemysql 0 \
-    --ldns localhost --local /tmp/v2ray-linux-64.zip
+    --ldns localhost
 
 FROM alpine:latest
 
